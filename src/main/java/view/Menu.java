@@ -52,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        HistoricoMenu.setText("Histórico de Ações");
+        HistoricoMenu.setText("HistÃ³rico");
         HistoricoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoricoMenuActionPerformed(evt);
@@ -132,13 +132,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_HistoricoMenuActionPerformed
 
     private void SairMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairMenuActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_SairMenuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

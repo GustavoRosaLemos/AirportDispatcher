@@ -4,6 +4,12 @@
  */
 package view;
 
+import configuration.SystemMessages;
+import controller.LoginControllerImpl;
+
+import javax.swing.*;
+
+
 /**
  *
  * @author Dalescio
@@ -28,7 +34,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         SenhaLogin = new javax.swing.JTextField();
-        EmailLogin = new javax.swing.JTextField();
+        UsernameLogin = new javax.swing.JTextField();
         EntrarLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,8 +49,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        EmailLogin.setText("Email");
-        EmailLogin.addActionListener(new java.awt.event.ActionListener() {
+        UsernameLogin.setText("Email");
+        UsernameLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailLoginActionPerformed(evt);
             }
@@ -69,7 +75,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmailLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EntrarLogin))
                 .addGap(124, 124, 124))
         );
@@ -79,7 +85,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(46, 46, 46)
-                .addComponent(EmailLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -96,15 +102,18 @@ public class Login extends javax.swing.JFrame {
 
     private void EmailLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EmailLoginActionPerformed
+    }
 
     private void EntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EntrarLoginActionPerformed
+        if (LoginControllerImpl.checkCredentials(UsernameLogin.getText(), SenhaLogin.getText())) {
+            setVisible(false);
+            dispose();
+            Menu.main();
+        } else {
+            JOptionPane.showMessageDialog(null, SystemMessages.LOGIN_FAIL_MESSAGE);
+        };
+    }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -137,10 +146,8 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EmailLogin;
+    private javax.swing.JTextField UsernameLogin;
     private javax.swing.JButton EntrarLogin;
     private javax.swing.JTextField SenhaLogin;
     private javax.swing.JLabel jLabel1;
-    // End of variables declaration//GEN-END:variables
 }
