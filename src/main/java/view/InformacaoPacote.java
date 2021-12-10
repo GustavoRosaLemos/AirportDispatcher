@@ -44,8 +44,8 @@ public class InformacaoPacote extends javax.swing.JFrame {
         PoraoInfo = new javax.swing.JComboBox<>();
         VooInfo = new javax.swing.JComboBox<>();
         HistoricoInfo = new javax.swing.JButton();
-        PesoPacoteInformacao = new javax.swing.JTextField();
         NomePacoteInformacao = new javax.swing.JTextField();
+        PesoPacoteInformacao = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -142,19 +142,14 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        PesoPacoteInformacao.setText("jTextField1");
-        PesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesoPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
         NomePacoteInformacao.setText("jTextField1");
         NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NomePacoteInformacaoActionPerformed(evt);
             }
         });
+
+        PesoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,11 +177,11 @@ public class InformacaoPacote extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(23, 23, 23)
                             .addComponent(NomePacoteInformacao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGap(14, 14, 14)
                             .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createSequentialGroup()
                             .addGap(24, 24, 24)
                             .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -214,7 +209,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -274,10 +269,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
 
-    private void PesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PesoPacoteInformacaoActionPerformed
-
     private void HistoricoInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoInfoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HistoricoInfoActionPerformed
@@ -324,7 +315,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
     private javax.swing.JButton HistoricoInformacao;
     private javax.swing.JLabel NomePacoteInfo;
     private javax.swing.JTextField NomePacoteInformacao;
-    private javax.swing.JTextField PesoPacoteInformacao;
+    private javax.swing.JComboBox<String> PesoPacoteInformacao;
     private javax.swing.JComboBox<String> PoraoInfo;
     private javax.swing.JTextField PortaoTransporteInformacao;
     private javax.swing.JComboBox<String> TipoPacoteInformacao;
