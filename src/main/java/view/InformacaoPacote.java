@@ -4,11 +4,19 @@
  */
 package view;
 
+import controller.FlightController;
+import controller.TransportDataController;
+import model.Flight;
+import model.Package;
+import model.TransportData;
+
 /**
  *
  * @author Dalescio
  */
 public class InformacaoPacote extends javax.swing.JFrame {
+
+    private static Package aPackage;
 
     /**
      * Creates new form InformacaoPacote
@@ -35,7 +43,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         VoltarInformacao = new javax.swing.JButton();
-        NomePacoteInfo = new javax.swing.JLabel();
         TipoPacoteInformacao = new javax.swing.JComboBox<>();
         CategoriaPacoteInformacao = new javax.swing.JComboBox<>();
         DestinoPacoteInformacao = new javax.swing.JComboBox<>();
@@ -66,7 +73,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        HistoricoInformacao.setText("Histórico");
+        HistoricoInformacao.setText("HistÃ³rico");
         HistoricoInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoricoInformacaoActionPerformed(evt);
@@ -75,8 +82,13 @@ public class InformacaoPacote extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Informações do Pacote");
+=======
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("InformaÃ§Ãµes do Pacote");
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Dados do Transporte");
@@ -88,23 +100,24 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        NomePacoteInfo.setText("jLabel4");
 
-        TipoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TipoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { aPackage.getPackageType() }));
         TipoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipoPacoteInformacaoActionPerformed(evt);
             }
         });
 
-        CategoriaPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CategoriaPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { aPackage.getPackageCategory() }));
         CategoriaPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoriaPacoteInformacaoActionPerformed(evt);
             }
         });
 
-        DestinoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TransportData transportData = TransportDataController.getTransportDataPackageId(aPackage.getId());
+        Flight flight = FlightController.getFlightById(transportData.getFlightId());
+        DestinoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { flight.getArrival() }));
         DestinoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DestinoPacoteInformacaoActionPerformed(evt);
@@ -114,42 +127,45 @@ public class InformacaoPacote extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Dados do Pacote");
 
-        PoraoInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PoraoInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { transportData.getCargo() }));
         PoraoInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PoraoInfoActionPerformed(evt);
             }
         });
 
-        VooInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String flighDataLabel = String.format("%s - %s - %s > %s", flight.getId(), flight.getPlaneCallsign(), flight.getDeparture(), flight.getArrival());
+        VooInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { flighDataLabel }));
         VooInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VooInfoActionPerformed(evt);
             }
         });
 
-        HistoricoInfo.setText("Histórico");
+        HistoricoInfo.setText("HistÃ³rico");
         HistoricoInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoricoInfoActionPerformed(evt);
             }
         });
 
-        NomePacoteInformacao.setText("Nome do responsável");
+        NomePacoteInformacao.setText(aPackage.getOwner());
+        NomePacoteInformacao.setEditable(false);
         NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NomePacoteInformacaoActionPerformed(evt);
             }
         });
 
-        PesoRegistro.setText("Peso");
+        PesoRegistro.setText(String.valueOf(aPackage.getWeight()));
+        PesoRegistro.setEditable(false);
         PesoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PesoRegistroActionPerformed(evt);
             }
         });
 
-        KgInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        KgInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { aPackage.getWeightType() }));
         KgInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KgInfoActionPerformed(evt);
@@ -165,7 +181,11 @@ public class InformacaoPacote extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(300, 300, 300)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+<<<<<<< HEAD
                             .addComponent(HistoricoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                            .addComponent(HistoricoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -208,8 +228,12 @@ public class InformacaoPacote extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
+=======
+                .addGap(38, 38, 38)
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +265,9 @@ public class InformacaoPacote extends javax.swing.JFrame {
     }//GEN-LAST:event_PortaoTransporteInformacaoActionPerformed
 
     private void VoltarInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarInformacaoActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        ConsultarPacote.main();
     }//GEN-LAST:event_VoltarInformacaoActionPerformed
 
     private void VooInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooInformacaoActionPerformed
@@ -249,7 +275,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
     }//GEN-LAST:event_VooInformacaoActionPerformed
 
     private void HistoricoInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoInformacaoActionPerformed
-        // TODO add your handling code here:
+        //
     }//GEN-LAST:event_HistoricoInformacaoActionPerformed
 
     private void PoraoInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoraoInfoActionPerformed
@@ -273,7 +299,9 @@ public class InformacaoPacote extends javax.swing.JFrame {
     }//GEN-LAST:event_CategoriaPacoteInformacaoActionPerformed
 
     private void HistoricoInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoInfoActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        HistoricoAcao.main(aPackage.getId());
     }//GEN-LAST:event_HistoricoInfoActionPerformed
 
     private void NomePacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
@@ -288,34 +316,8 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_KgInfoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InformacaoPacote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InformacaoPacote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InformacaoPacote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InformacaoPacote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void main(Package aPackageReceived) {
+        aPackage = aPackageReceived;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InformacaoPacote().setVisible(true);
@@ -329,7 +331,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
     private javax.swing.JButton HistoricoInfo;
     private javax.swing.JButton HistoricoInformacao;
     private javax.swing.JComboBox<String> KgInfo;
-    private javax.swing.JLabel NomePacoteInfo;
     private javax.swing.JTextField NomePacoteInformacao;
     private javax.swing.JTextField PesoRegistro;
     private javax.swing.JComboBox<String> PoraoInfo;

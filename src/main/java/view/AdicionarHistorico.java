@@ -4,11 +4,17 @@
  */
 package view;
 
+import configuration.PackageConfiguration;
+import controller.PackageHistoryController;
+import session.UserSession;
+
 /**
  *
  * @author Dalescio
  */
 public class AdicionarHistorico extends javax.swing.JFrame {
+
+    private static int packageId;
 
     /**
      * Creates new form AdicionarHistorico
@@ -30,14 +36,18 @@ public class AdicionarHistorico extends javax.swing.JFrame {
         StatusAdicionar = new javax.swing.JComboBox<>();
         VoltarAdicionar = new javax.swing.JButton();
         AdicionarAdicionar = new javax.swing.JButton();
-        NomePacoteAdicionar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Histórico de Ações");
+=======
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("HistÃ³rico de AÃ§Ãµes");
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
 
-        StatusAdicionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        StatusAdicionar.setModel(new javax.swing.DefaultComboBoxModel<>(PackageConfiguration.PACKAGE_HISTORY_ACTIONS));
         StatusAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StatusAdicionarActionPerformed(evt);
@@ -58,8 +68,6 @@ public class AdicionarHistorico extends javax.swing.JFrame {
             }
         });
 
-        NomePacoteAdicionar.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,6 +76,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
                 .addGap(108, 108, 108)
                 .addComponent(VoltarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                 .addComponent(AdicionarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -81,6 +90,16 @@ public class AdicionarHistorico extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(309, 309, 309))))
+=======
+                .addComponent(AdicionarAdicionar)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(StatusAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(86, 86, 86))
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,12 +107,18 @@ public class AdicionarHistorico extends javax.swing.JFrame {
                 .addGap(89, 89, 89)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(150, 150, 150)
                 .addComponent(StatusAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(313, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                .addGap(61, 61, 61)
+                .addComponent(StatusAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VoltarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AdicionarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,21 +129,23 @@ public class AdicionarHistorico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AdicionarAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarAdicionarActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        PackageHistoryController.addHistory(packageId, StatusAdicionar.getSelectedItem().toString(), UserSession.getUsername());
+        HistoricoAcao.main(packageId);
     }//GEN-LAST:event_AdicionarAdicionarActionPerformed
 
     private void VoltarAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarAdicionarActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        HistoricoAcao.main(packageId);
     }//GEN-LAST:event_VoltarAdicionarActionPerformed
 
     private void StatusAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusAdicionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_StatusAdicionarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void main(int packageIdReceived) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -143,6 +170,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        packageId = packageIdReceived;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AdicionarHistorico().setVisible(true);
@@ -152,7 +180,6 @@ public class AdicionarHistorico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdicionarAdicionar;
-    private javax.swing.JLabel NomePacoteAdicionar;
     private javax.swing.JComboBox<String> StatusAdicionar;
     private javax.swing.JButton VoltarAdicionar;
     private javax.swing.JLabel jLabel1;

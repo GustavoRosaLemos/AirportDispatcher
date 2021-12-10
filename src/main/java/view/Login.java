@@ -4,6 +4,13 @@
  */
 package view;
 
+import configuration.SystemMessages;
+import controller.LoginController;
+import session.UserSession;
+
+import javax.swing.*;
+
+
 /**
  *
  * @author Dalescio
@@ -27,7 +34,12 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< HEAD
         EmailLogin = new javax.swing.JTextField();
+=======
+        SenhaLogin = new javax.swing.JTextField();
+        UsernameLogin = new javax.swing.JTextField();
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
         EntrarLogin = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
 
@@ -36,8 +48,20 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Airport Dispatcher");
 
+<<<<<<< HEAD
         EmailLogin.setText("Email");
         EmailLogin.addActionListener(new java.awt.event.ActionListener() {
+=======
+        SenhaLogin.setText("Senha");
+        SenhaLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SenhaLoginActionPerformed(evt);
+            }
+        });
+
+        UsernameLogin.setText("Email");
+        UsernameLogin.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailLoginActionPerformed(evt);
             }
@@ -64,21 +88,37 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(318, 318, 318)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+<<<<<<< HEAD
                     .addComponent(EntrarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(291, 291, 291))
+=======
+                    .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EntrarLogin))
+                .addGap(124, 124, 124))
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(176, 176, 176)
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39)
                 .addComponent(EmailLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(UsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
                 .addGap(18, 18, 18)
                 .addComponent(EntrarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(281, Short.MAX_VALUE))
@@ -89,12 +129,21 @@ public class Login extends javax.swing.JFrame {
 
     private void EmailLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EmailLoginActionPerformed
+    }
 
     private void EntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EntrarLoginActionPerformed
+        if (LoginController.checkCredentials(UsernameLogin.getText(), SenhaLogin.getText())) {
+            setVisible(false);
+            dispose();
+            UserSession.setUsername(UsernameLogin.getText());
+            UserSession.setPassword(SenhaLogin.getText());
+            Menu.main();
+        } else {
+            JOptionPane.showMessageDialog(null, SystemMessages.LOGIN_FAIL_MESSAGE);
+        };
+    }
 
+<<<<<<< HEAD
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
@@ -102,6 +151,8 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+=======
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -134,10 +185,12 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EmailLogin;
+    private javax.swing.JTextField UsernameLogin;
     private javax.swing.JButton EntrarLogin;
     private javax.swing.JLabel jLabel1;
+<<<<<<< HEAD
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
+=======
+>>>>>>> df378a5ba8642d0c7023b83f219d20fae0fc7c99
 }
