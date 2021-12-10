@@ -109,7 +109,7 @@ public class ConsultarPacote extends javax.swing.JFrame {
         }
         if (packageId != -1) {
             Package aPackage = PackageController.getPackageById(packageId);
-            if (aPackage.getId() != -1 && aPackage != null && aPackage.getOwner() != null ) {
+            if (aPackage != null && aPackage.getId() != -1 && aPackage.getOwner() != null ) {
                 setVisible(false);
                 dispose();
                 InformacaoPacote.main(aPackage);

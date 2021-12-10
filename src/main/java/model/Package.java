@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Package {
+public class Package implements DatabaseModels {
     private int id;
     private String packageType;
     private String packageCategory;

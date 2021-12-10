@@ -1,5 +1,7 @@
 package controller;
 
+import exception.DatabaseConnectionException;
+import exception.DatabaseSetupException;
 import model.Package;
 import session.UserSession;
 

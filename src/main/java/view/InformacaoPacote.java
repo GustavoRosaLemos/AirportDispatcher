@@ -4,9 +4,7 @@
  */
 package view;
 
-import controller.DatabaseController;
 import controller.FlightController;
-import controller.PackageController;
 import controller.TransportDataController;
 import model.Flight;
 import model.Package;

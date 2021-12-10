@@ -1,6 +1,8 @@
 package controller;
 
 import database.SQLiteJDBCDriverConnection;
+import exception.DatabaseConnectionException;
+import exception.DatabaseSetupException;
 import model.*;
 import model.Package;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DatabaseController {
-    public static void createDatabase() {
+    public static void createDatabase() throws DatabaseSetupException, SQLException, DatabaseConnectionException {
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
             Statement statement = connection.createStatement();
@@ -48,7 +50,7 @@ public abstract class DatabaseController {
             statement.close();
             connection.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseSetupException("Falha ao realizar setup do banco de dados > " + e.getMessage());
         }
     }
 
@@ -65,13 +67,13 @@ public abstract class DatabaseController {
             stmt.setString(7, LocalDateTime.now().toString());
             stmt.execute();
             return stmt.getGeneratedKeys().getString(1);
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return "-1";
     }
 
-    public static String addTransportData(int packageId, int flightId, String cargo) {
+    public static String addTransportData(int packageId, int flightId, String cargo)  {
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO transportData(packageId, flightId, cargo, createdAt) VALUES (?, ?, ?, ?)");
@@ -81,7 +83,7 @@ public abstract class DatabaseController {
             stmt.setString(4, LocalDateTime.now().toString());
             stmt.execute();
             return stmt.getGeneratedKeys().getString(1);
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return "-1";
@@ -102,7 +104,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return transportData;
@@ -123,7 +125,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return user;
@@ -140,7 +142,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return airports;
@@ -162,7 +164,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return plane;
@@ -179,7 +181,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return planes;
@@ -196,7 +198,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return flights;
@@ -214,7 +216,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return flights;
@@ -236,33 +238,41 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return flight;
     }
 
     public static Package getPackage(int id) {
-        Package aPackage = Package.builder().build();
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM package WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
+                Package aPackage;
+                if (resultSet.getString("packageCategory").toString().equalsIgnoreCase("Refrigerado")) {
+                    aPackage = PackageRefrigerated.builder().build();
+                } else if (resultSet.getString("packageCategory").toString().equalsIgnoreCase("Vivo")) {
+                    aPackage = PackageLive.builder().build();
+                } else {
+                    aPackage = Package.builder().build();
+                }
                 aPackage.setId(resultSet.getInt("id"));
                 aPackage.setPackageType(resultSet.getString("packageType"));
                 aPackage.setPackageCategory(resultSet.getString("packageCategory"));
                 aPackage.setOwner(resultSet.getString("owner"));
                 aPackage.setWeight(resultSet.getInt("weight"));
                 aPackage.setWeightType(resultSet.getString("weightType"));
+                return aPackage;
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
-        return aPackage;
+        return null;
     }
 
     public static List<Package> getPackages() {
@@ -285,7 +295,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return packages;
@@ -300,7 +310,7 @@ public abstract class DatabaseController {
             stmt.setString(3, author);
             stmt.setString(4, LocalDateTime.now().toString());
             stmt.execute();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -324,7 +334,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return packageHistories;
@@ -350,7 +360,7 @@ public abstract class DatabaseController {
             }
             stmt.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseConnectionException e) {
             System.out.println(e.getMessage());
         }
         return packageHistories;
