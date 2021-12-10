@@ -24,43 +24,39 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-              <Component id="jLabel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="HistoricoMenu" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="AcompanharMenu" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="ConsultarMenu" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="RegistrarMenu" min="-2" pref="170" max="-2" attributes="0"/>
+              <EmptySpace pref="309" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="RegistrarMenu" alignment="1" min="-2" pref="291" max="-2" attributes="0"/>
+                  <Component id="ConsultarMenu" alignment="1" min="-2" pref="291" max="-2" attributes="0"/>
+                  <Component id="AcompanharMenu" alignment="1" min="-2" pref="291" max="-2" attributes="0"/>
+                  <Component id="HistoricoMenu" alignment="1" min="-2" pref="291" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="SairMenu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="SairMenu" min="-2" pref="114" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="jLabel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="RegistrarMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="ConsultarMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="AcompanharMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="HistoricoMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Component id="SairMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="RegistrarMenu" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="ConsultarMenu" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="AcompanharMenu" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="HistoricoMenu" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace pref="202" max="32767" attributes="0"/>
+              <Component id="SairMenu" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +65,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="24" style="0"/>
+          <Font name="Segoe UI" size="36" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Airport Dispatcher"/>
       </Properties>
