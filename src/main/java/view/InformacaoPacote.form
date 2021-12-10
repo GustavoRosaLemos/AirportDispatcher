@@ -39,14 +39,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="PortaoTransporteInformacao" min="-2" pref="108" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="AeronaveTransporteInformacao" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="PoraoTransporteInformacao" min="-2" pref="108" max="-2" attributes="0"/>
+                          <Component id="VooInformacao" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -68,7 +66,6 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="VooTransporteInformacao" min="-2" pref="343" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -118,12 +115,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PortaoTransporteInformacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AeronaveTransporteInformacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="PoraoTransporteInformacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="VooInformacao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="VooTransporteInformacao" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="HistoricoInformacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
@@ -229,28 +223,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PortaoTransporteInformacaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="VooTransporteInformacao">
+    <Component class="javax.swing.JTextField" name="VooInformacao">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VooTransporteInformacaoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="AeronaveTransporteInformacao">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AeronaveTransporteInformacaoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="PoraoTransporteInformacao">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PoraoTransporteInformacaoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VooInformacaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="HistoricoInformacao">

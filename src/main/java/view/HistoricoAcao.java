@@ -30,6 +30,7 @@ public class HistoricoAcao extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaHistorico = new javax.swing.JTable();
         VoltarHistorico = new javax.swing.JButton();
+        StatusHistorico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,8 @@ public class HistoricoAcao extends javax.swing.JFrame {
 
         VoltarHistorico.setText("Voltar");
 
+        StatusHistorico.setText("Novo Status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,7 +72,9 @@ public class HistoricoAcao extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(VoltarHistorico)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(StatusHistorico)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +84,9 @@ public class HistoricoAcao extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(VoltarHistorico)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VoltarHistorico)
+                    .addComponent(StatusHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -122,6 +129,7 @@ public class HistoricoAcao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton StatusHistorico;
     private javax.swing.JTable TabelaHistorico;
     private javax.swing.JButton VoltarHistorico;
     private javax.swing.JLabel jLabel1;
