@@ -2,6 +2,7 @@ import controller.DatabaseController;
 import exception.DatabaseConnectionException;
 import exception.DatabaseDisconnectException;
 import exception.DatabaseSetupException;
+import model.Airport;
 import view.*;
 
 import java.sql.SQLException;
