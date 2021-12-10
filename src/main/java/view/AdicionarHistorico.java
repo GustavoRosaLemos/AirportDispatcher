@@ -30,7 +30,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
         StatusAdicionar = new javax.swing.JComboBox<>();
         VoltarAdicionar = new javax.swing.JButton();
         AdicionarAdicionar = new javax.swing.JButton();
-        NomePacoteAdicionar = new javax.swing.JTextField();
+        NomePacoteAdicionar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +58,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
             }
         });
 
-        NomePacoteAdicionar.setText("jTextField1");
-        NomePacoteAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomePacoteAdicionarActionPerformed(evt);
-            }
-        });
+        NomePacoteAdicionar.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +73,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(StatusAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(86, 86, 86))
@@ -89,8 +84,8 @@ public class AdicionarHistorico extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(NomePacoteAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addComponent(StatusAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -113,10 +108,6 @@ public class AdicionarHistorico extends javax.swing.JFrame {
     private void StatusAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusAdicionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_StatusAdicionarActionPerformed
-
-    private void NomePacoteAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteAdicionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomePacoteAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +146,7 @@ public class AdicionarHistorico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdicionarAdicionar;
-    private javax.swing.JTextField NomePacoteAdicionar;
+    private javax.swing.JLabel NomePacoteAdicionar;
     private javax.swing.JComboBox<String> StatusAdicionar;
     private javax.swing.JButton VoltarAdicionar;
     private javax.swing.JLabel jLabel1;

@@ -28,72 +28,25 @@ public class InformacaoPacote extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        TipoPacoteInformacao = new javax.swing.JTextField();
-        CategoriaPacoteInformacao = new javax.swing.JTextField();
-        DestinoPacoteInformacao = new javax.swing.JTextField();
-        NomePacoteInformacao = new javax.swing.JTextField();
-        UnidadePesoPacoteInformacao = new javax.swing.JTextField();
-        PesoPacoteInformacao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         PortaoTransporteInformacao = new javax.swing.JTextField();
         VooInformacao = new javax.swing.JTextField();
         HistoricoInformacao = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         VoltarInformacao = new javax.swing.JButton();
-        NomePacoteInfo = new javax.swing.JTextField();
+        NomePacoteInfo = new javax.swing.JLabel();
+        TipoPacoteInformacao = new javax.swing.JComboBox<>();
+        CategoriaPacoteInformacao = new javax.swing.JComboBox<>();
+        DestinoPacoteInformacao = new javax.swing.JComboBox<>();
+        NomePacoteInformacao = new javax.swing.JComboBox<>();
+        PesoPacoteInformacao = new javax.swing.JComboBox<>();
+        UnidadePesoPacoteInformacao = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        PoraoInfo = new javax.swing.JComboBox<>();
+        VooInfo = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jTextPane1);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Informações do Pacote");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Dados do Pacote");
-
-        TipoPacoteInformacao.setText("jTextField1");
-        TipoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        CategoriaPacoteInformacao.setText("jTextField1");
-        CategoriaPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CategoriaPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        DestinoPacoteInformacao.setText("jTextField1");
-        DestinoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DestinoPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        NomePacoteInformacao.setText("jTextField1");
-        NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomePacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        UnidadePesoPacoteInformacao.setText("jTextField1");
-        UnidadePesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UnidadePesoPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        PesoPacoteInformacao.setText("jTextField1");
-        PesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesoPacoteInformacaoActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Dados do Transporte");
@@ -119,6 +72,14 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Informações do Pacote");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Dados do Transporte");
+
         VoltarInformacao.setText("Voltar");
         VoltarInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,10 +87,64 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        NomePacoteInfo.setText("jTextField1");
-        NomePacoteInfo.addActionListener(new java.awt.event.ActionListener() {
+        NomePacoteInfo.setText("jLabel4");
+
+        TipoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TipoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomePacoteInfoActionPerformed(evt);
+                TipoPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        CategoriaPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CategoriaPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoriaPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        DestinoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        DestinoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DestinoPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        NomePacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomePacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        PesoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesoPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        UnidadePesoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        UnidadePesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UnidadePesoPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Dados do Pacote");
+
+        PoraoInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PoraoInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PoraoInfoActionPerformed(evt);
+            }
+        });
+
+        VooInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        VooInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VooInfoActionPerformed(evt);
             }
         });
 
@@ -138,39 +153,37 @@ public class InformacaoPacote extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(HistoricoInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(66, 66, 66))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(PortaoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(VooInformacao)
-                .addContainerGap(161, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(VoltarInformacao)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel1)
+                            .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(VoltarInformacao)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CategoriaPacoteInformacao, 0, 100, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DestinoPacoteInformacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(UnidadePesoPacoteInformacao, 0, 46, Short.MAX_VALUE))))
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PoraoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CategoriaPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(DestinoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(VooInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,37 +192,31 @@ public class InformacaoPacote extends javax.swing.JFrame {
                 .addComponent(VoltarInformacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CategoriaPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DestinoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                    .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PortaoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(VooInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(HistoricoInformacao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PoraoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VooInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TipoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoPacoteInformacaoActionPerformed
 
     private void PortaoTransporteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PortaoTransporteInformacaoActionPerformed
         // TODO add your handling code here:
@@ -219,26 +226,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_VoltarInformacaoActionPerformed
 
-    private void CategoriaPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriaPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CategoriaPacoteInformacaoActionPerformed
-
-    private void DestinoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinoPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DestinoPacoteInformacaoActionPerformed
-
-    private void NomePacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
-
-    private void PesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PesoPacoteInformacaoActionPerformed
-
-    private void UnidadePesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadePesoPacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UnidadePesoPacoteInformacaoActionPerformed
-
     private void VooInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooInformacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VooInformacaoActionPerformed
@@ -247,9 +234,37 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HistoricoInformacaoActionPerformed
 
-    private void NomePacoteInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInfoActionPerformed
+    private void PoraoInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoraoInfoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NomePacoteInfoActionPerformed
+    }//GEN-LAST:event_PoraoInfoActionPerformed
+
+    private void VooInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VooInfoActionPerformed
+
+    private void TipoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoPacoteInformacaoActionPerformed
+
+    private void NomePacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
+
+    private void DestinoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinoPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DestinoPacoteInformacaoActionPerformed
+
+    private void CategoriaPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriaPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CategoriaPacoteInformacaoActionPerformed
+
+    private void PesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesoPacoteInformacaoActionPerformed
+
+    private void UnidadePesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadePesoPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UnidadePesoPacoteInformacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,20 +302,23 @@ public class InformacaoPacote extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CategoriaPacoteInformacao;
-    private javax.swing.JTextField DestinoPacoteInformacao;
+    private javax.swing.JComboBox<String> CategoriaPacoteInformacao;
+    private javax.swing.JComboBox<String> DestinoPacoteInformacao;
     private javax.swing.JButton HistoricoInformacao;
-    private javax.swing.JTextField NomePacoteInfo;
-    private javax.swing.JTextField NomePacoteInformacao;
-    private javax.swing.JTextField PesoPacoteInformacao;
+    private javax.swing.JLabel NomePacoteInfo;
+    private javax.swing.JComboBox<String> NomePacoteInformacao;
+    private javax.swing.JComboBox<String> PesoPacoteInformacao;
+    private javax.swing.JComboBox<String> PoraoInfo;
     private javax.swing.JTextField PortaoTransporteInformacao;
-    private javax.swing.JTextField TipoPacoteInformacao;
-    private javax.swing.JTextField UnidadePesoPacoteInformacao;
+    private javax.swing.JComboBox<String> TipoPacoteInformacao;
+    private javax.swing.JComboBox<String> UnidadePesoPacoteInformacao;
     private javax.swing.JButton VoltarInformacao;
+    private javax.swing.JComboBox<String> VooInfo;
     private javax.swing.JTextField VooInformacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
