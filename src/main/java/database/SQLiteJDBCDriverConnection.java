@@ -17,6 +17,7 @@ public class SQLiteJDBCDriverConnection {
     public static boolean disconnect() {
         try {
             connection.close();
+            connection = null;
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

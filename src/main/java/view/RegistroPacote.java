@@ -4,6 +4,19 @@
  */
 package view;
 
+import configuration.PackageConfiguration;
+import configuration.SystemMessages;
+import constant.PlaneConstants;
+import controller.DatabaseController;
+import controller.PackageController;
+import exception.WrongWeightException;
+import model.Airport;
+import model.Flight;
+import model.Plane;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author Dalescio
@@ -35,12 +48,10 @@ public class RegistroPacote extends javax.swing.JFrame {
         PesoRegistro = new javax.swing.JTextField();
         KgRegistro = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        PortaoRegistro = new javax.swing.JComboBox<>();
-        AeronaveRegistro = new javax.swing.JComboBox<>();
         PoraoRegistro = new javax.swing.JComboBox<>();
+        AeronaveRegistro = new javax.swing.JComboBox<>();
         VoltarRegistro = new javax.swing.JButton();
         RegistroRegistro = new javax.swing.JButton();
-        VooRegistro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,28 +61,32 @@ public class RegistroPacote extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Dados do pacote");
 
-        TipoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TipoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(PackageConfiguration.PACKAGE_TYPES));
         TipoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipoRegistroActionPerformed(evt);
             }
         });
 
-        CategoriaRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CategoriaRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(PackageConfiguration.PACKAGE_CATEGORIES));
         CategoriaRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoriaRegistroActionPerformed(evt);
             }
         });
 
-        DestinoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ArrayList<String> airportCodes = new ArrayList<String>();
+        for(Airport airport : DatabaseController.getAirports()) {
+            airportCodes.add(airport.getCode());
+        }
+        DestinoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(airportCodes.toArray(new String[0])));
         DestinoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DestinoRegistroActionPerformed(evt);
             }
         });
 
-        NomeResponsavel.setText("Nome do respons·vel");
+        NomeResponsavel.setText("Nome do respons√°vel");
         NomeResponsavel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NomeResponsavelActionPerformed(evt);
@@ -85,7 +100,7 @@ public class RegistroPacote extends javax.swing.JFrame {
             }
         });
 
-        KgRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        KgRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(PackageConfiguration.PACKAGE_WEIGTH_FORMATES));
         KgRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KgRegistroActionPerformed(evt);
@@ -95,24 +110,22 @@ public class RegistroPacote extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Dados do transporte");
 
-        PortaoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        PortaoRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PortaoRegistroActionPerformed(evt);
-            }
-        });
-
-        AeronaveRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        AeronaveRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AeronaveRegistroActionPerformed(evt);
-            }
-        });
-
-        PoraoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PoraoRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(PlaneConstants.PLANE_CARGO_QUANTITY));
         PoraoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PoraoRegistroActionPerformed(evt);
+            }
+        });
+
+        ArrayList<String> fligthLabels = new ArrayList<String>();
+        for (Flight fligth : DatabaseController.getFlights()) {
+            fligthLabels.add(String.format("%s - %s - %s > %s", fligth.getId(), fligth.getPlaneCallsign(), fligth.getArrival(), fligth.getDeparture()));
+        }
+
+        AeronaveRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(fligthLabels.toArray(new String[0])));
+        AeronaveRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VooRegistroActionPerformed(evt);
             }
         });
 
@@ -127,13 +140,6 @@ public class RegistroPacote extends javax.swing.JFrame {
         RegistroRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistroRegistroActionPerformed(evt);
-            }
-        });
-
-        VooRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        VooRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VooRegistroActionPerformed(evt);
             }
         });
 
@@ -154,7 +160,6 @@ public class RegistroPacote extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(VooRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,12 +177,11 @@ public class RegistroPacote extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PortaoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PoraoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AeronaveRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PoraoRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(37, 37, 37))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                .addGap(37, 37, 37)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,11 +209,9 @@ public class RegistroPacote extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PortaoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AeronaveRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PoraoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PoraoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AeronaveRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(VooRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(RegistroRegistro)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -242,34 +244,40 @@ public class RegistroPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_KgRegistroActionPerformed
 
-    private void PortaoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PortaoRegistroActionPerformed
+    private void PoraoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PortaoRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PortaoRegistroActionPerformed
 
-    private void AeronaveRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AeronaveRegistroActionPerformed
+    private void VooRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AeronaveRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AeronaveRegistroActionPerformed
 
-    private void PoraoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoraoRegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PoraoRegistroActionPerformed
-
     private void RegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroRegistroActionPerformed
-        // TODO add your handling code here:
+        int weight = -1;
+        try {
+            weight = Integer.parseInt(PesoRegistro.getText());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        if(weight >= 1) {
+            String planeCallsign = AeronaveRegistro.getSelectedItem().toString().split("-")[1].replaceAll("\\s", "");
+            if (PackageController.addPackage(TipoRegistro.getSelectedItem().toString(), CategoriaRegistro.getSelectedItem().toString(), NomeResponsavel.getText(), weight, KgRegistro.getSelectedItem().toString(), planeCallsign, PoraoRegistro.getSelectedItem().toString())) {
+                JOptionPane.showMessageDialog(null, SystemMessages.SUCCESS_PACKAGE_CREATION);
+            } else {
+                JOptionPane.showMessageDialog(null, SystemMessages.FAIL_PACKAGE_CREATION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, SystemMessages.WRONG_INT_VALUE_MESSAGE);
+        }
     }//GEN-LAST:event_RegistroRegistroActionPerformed
 
     private void VoltarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarRegistroActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        Menu.main();
     }//GEN-LAST:event_VoltarRegistroActionPerformed
 
-    private void VooRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooRegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VooRegistroActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -309,11 +317,9 @@ public class RegistroPacote extends javax.swing.JFrame {
     private javax.swing.JTextField NomeResponsavel;
     private javax.swing.JTextField PesoRegistro;
     private javax.swing.JComboBox<String> PoraoRegistro;
-    private javax.swing.JComboBox<String> PortaoRegistro;
     private javax.swing.JButton RegistroRegistro;
     private javax.swing.JComboBox<String> TipoRegistro;
     private javax.swing.JButton VoltarRegistro;
-    private javax.swing.JComboBox<String> VooRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
