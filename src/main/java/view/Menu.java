@@ -122,15 +122,21 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarMenuActionPerformed
 
     private void ConsultarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarMenuActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        ConsultarPacote.main();
     }//GEN-LAST:event_ConsultarMenuActionPerformed
 
     private void AcompanharMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcompanharMenuActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        AcompanharPacotes.main();
     }//GEN-LAST:event_AcompanharMenuActionPerformed
 
     private void HistoricoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoMenuActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        HistoricoAcao.main();
     }//GEN-LAST:event_HistoricoMenuActionPerformed
 
     private void SairMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairMenuActionPerformed

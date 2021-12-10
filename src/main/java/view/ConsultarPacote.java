@@ -4,6 +4,12 @@
  */
 package view;
 
+import configuration.SystemMessages;
+import controller.PackageController;
+import model.Package;
+
+import javax.swing.*;
+
 /**
  *
  * @author Dalescio
@@ -95,17 +101,33 @@ public class ConsultarPacote extends javax.swing.JFrame {
     }//GEN-LAST:event_IDConsultarActionPerformed
 
     private void BuscarConultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarConultaActionPerformed
-        // TODO add your handling code here:
+        int packageId = -1;
+        try {
+            packageId = Integer.parseInt(IDConsultar.getText());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        if (packageId != -1) {
+            Package aPackage = PackageController.getPackageById(packageId);
+            if (aPackage.getId() != -1 && aPackage != null && aPackage.getOwner() != null ) {
+                setVisible(false);
+                dispose();
+                InformacaoPacote.main(aPackage);
+            } else {
+                JOptionPane.showMessageDialog(null, SystemMessages.FAIL_PACKAGE_FIND);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, SystemMessages.WRONG_INT_VALUE_MESSAGE);
+        }
     }//GEN-LAST:event_BuscarConultaActionPerformed
 
     private void VoltarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarConsultaActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        Menu.main();
     }//GEN-LAST:event_VoltarConsultaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
