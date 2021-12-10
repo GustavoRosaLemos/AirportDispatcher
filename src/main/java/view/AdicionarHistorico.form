@@ -23,21 +23,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace pref="93" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="StatusAdicionar" alignment="2" min="-2" pref="221" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="NumeroPacoteAdicionar" alignment="2" min="-2" pref="134" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="VoltarAdicionar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="AdicionarAdicionar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="93" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="NomePacoteAdicionar" alignment="2" min="-2" pref="149" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="StatusAdicionar" alignment="2" min="-2" pref="221" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,10 +47,10 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="NumeroPacoteAdicionar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <Component id="NomePacoteAdicionar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               <Component id="StatusAdicionar" min="-2" pref="34" max="-2" attributes="0"/>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="VoltarAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="AdicionarAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -68,24 +68,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de A&#xe7;&#xf5;es"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="NumeroPacoteAdicionar">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumeroPacoteAdicionarActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="StatusAdicionar">
       <Properties>
@@ -119,6 +101,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdicionarAdicionarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="NomePacoteAdicionar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NomePacoteAdicionarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
