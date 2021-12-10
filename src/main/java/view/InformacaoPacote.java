@@ -39,9 +39,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
         PesoPacoteInformacao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         PortaoTransporteInformacao = new javax.swing.JTextField();
-        VooTransporteInformacao = new javax.swing.JTextField();
-        AeronaveTransporteInformacao = new javax.swing.JTextField();
-        PoraoTransporteInformacao = new javax.swing.JTextField();
+        VooInformacao = new javax.swing.JTextField();
         HistoricoInformacao = new javax.swing.JButton();
         VoltarInformacao = new javax.swing.JButton();
 
@@ -114,24 +112,10 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        VooTransporteInformacao.setText("jTextField1");
-        VooTransporteInformacao.addActionListener(new java.awt.event.ActionListener() {
+        VooInformacao.setText("jTextField1");
+        VooInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VooTransporteInformacaoActionPerformed(evt);
-            }
-        });
-
-        AeronaveTransporteInformacao.setText("jTextField1");
-        AeronaveTransporteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AeronaveTransporteInformacaoActionPerformed(evt);
-            }
-        });
-
-        PoraoTransporteInformacao.setText("jTextField1");
-        PoraoTransporteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PoraoTransporteInformacaoActionPerformed(evt);
+                VooInformacaoActionPerformed(evt);
             }
         });
 
@@ -156,14 +140,12 @@ public class InformacaoPacote extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(PortaoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(AeronaveTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(PoraoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(VooInformacao))
                         .addComponent(jLabel2)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -179,7 +161,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
                                     .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(VooTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(74, 74, 74)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,11 +200,8 @@ public class InformacaoPacote extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PortaoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AeronaveTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PoraoTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VooTransporteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(VooInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addComponent(HistoricoInformacao)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -267,17 +245,9 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UnidadePesoPacoteInformacaoActionPerformed
 
-    private void AeronaveTransporteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AeronaveTransporteInformacaoActionPerformed
+    private void VooInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooInformacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AeronaveTransporteInformacaoActionPerformed
-
-    private void PoraoTransporteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoraoTransporteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PoraoTransporteInformacaoActionPerformed
-
-    private void VooTransporteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VooTransporteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VooTransporteInformacaoActionPerformed
+    }//GEN-LAST:event_VooInformacaoActionPerformed
 
     private void HistoricoInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoInformacaoActionPerformed
         // TODO add your handling code here:
@@ -319,19 +289,17 @@ public class InformacaoPacote extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AeronaveTransporteInformacao;
     private javax.swing.JTextField CategoriaPacoteInformacao;
     private javax.swing.JTextField DestinoPacoteInformacao;
     private javax.swing.JButton HistoricoInformacao;
     private javax.swing.JComboBox<String> NomePacoteInfo;
     private javax.swing.JTextField NomePacoteInformacao;
     private javax.swing.JTextField PesoPacoteInformacao;
-    private javax.swing.JTextField PoraoTransporteInformacao;
     private javax.swing.JTextField PortaoTransporteInformacao;
     private javax.swing.JTextField TipoPacoteInformacao;
     private javax.swing.JTextField UnidadePesoPacoteInformacao;
     private javax.swing.JButton VoltarInformacao;
-    private javax.swing.JTextField VooTransporteInformacao;
+    private javax.swing.JTextField VooInformacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
