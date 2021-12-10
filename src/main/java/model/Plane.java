@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Plane {
+public class Plane implements DatabaseModels {
     private int id;
     private String callsign;
     private String company;

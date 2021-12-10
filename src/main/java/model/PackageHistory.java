@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PackageHistory {
+public class PackageHistory implements DatabaseModels {
     private int id;
     private String author;
     private int packageId;

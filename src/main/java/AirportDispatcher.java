@@ -1,11 +1,14 @@
 import controller.DatabaseController;
-import database.SQLiteJDBCDriverConnection;
+import exception.DatabaseConnectionException;
+import exception.DatabaseDisconnectException;
+import exception.DatabaseSetupException;
 import view.*;
 
+import java.sql.SQLException;
+
 public class AirportDispatcher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DatabaseSetupException, DatabaseConnectionException, SQLException {
         DatabaseController.createDatabase();
-//        InformacaoPacote.main(args);
         Login.main(args);
     }
 }

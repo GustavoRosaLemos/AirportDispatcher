@@ -5,7 +5,7 @@
 package view;
 
 import configuration.SystemMessages;
-import controller.LoginControllerImpl;
+import controller.LoginController;
 import session.UserSession;
 
 import javax.swing.*;
@@ -106,7 +106,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void EntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarLoginActionPerformed
-        if (LoginControllerImpl.checkCredentials(UsernameLogin.getText(), SenhaLogin.getText())) {
+        if (LoginController.checkCredentials(UsernameLogin.getText(), SenhaLogin.getText())) {
             setVisible(false);
             dispose();
             UserSession.setUsername(UsernameLogin.getText());
