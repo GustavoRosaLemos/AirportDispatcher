@@ -4,6 +4,16 @@
  */
 package view;
 
+import controller.*;
+import model.Flight;
+import model.Package;
+import model.Plane;
+import model.TransportData;
+import utils.PackageTools;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dalescio
@@ -28,7 +38,6 @@ public class AcompanharPacotes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaAcompanhar = new javax.swing.JTable();
         VoltarAcompanhar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -36,17 +45,26 @@ public class AcompanharPacotes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Acompanhar Pacotes");
 
-        TabelaAcompanhar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Pacote", "Voo", "Destino", "Peso"
-            }
-        ));
+        Object [][] defaultData = new Object [][] {
+        };
+
+        Object [] defaultColumn = new String [] {
+                "Pacote", "Voo", "Parida", "Destino"
+        };
+        DefaultTableModel tableModel = new DefaultTableModel(defaultData, defaultColumn);
+
+        for (Package aPackage : PackageController.getAllPackages()) {
+            TransportData transportData = TransportDataController.getTransportDataPackageId(aPackage.getId());
+            Flight flight = FlightController.getFlightById(transportData.getFlightId());
+            Plane plane = PlaneController.getPlaneByCallSign(flight.getPlaneCallsign());
+            tableModel.addRow(new Object[] {
+                    String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), aPackage.getId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
+                    String.format("%s - %s - %s", flight.getPlaneCallsign(), plane.getModel(), plane.getCompany()),
+                    flight.getDeparture(),
+                    flight.getArrival()
+            });
+        }
+        TabelaAcompanhar = new JTable(tableModel);
         jScrollPane1.setViewportView(TabelaAcompanhar);
 
         VoltarAcompanhar.setText("Voltar");
@@ -88,13 +106,12 @@ public class AcompanharPacotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VoltarAcompanharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarAcompanharActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        Menu.main();
     }//GEN-LAST:event_VoltarAcompanharActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

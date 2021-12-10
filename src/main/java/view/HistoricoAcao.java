@@ -4,6 +4,16 @@
  */
 package view;
 
+import controller.PackageController;
+import controller.PackageHistoryController;
+import model.Package;
+import model.PackageHistory;
+import utils.PackageTools;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author Dalescio
@@ -13,9 +23,10 @@ public class HistoricoAcao extends javax.swing.JFrame {
     /**
      * Creates new form HistoricoAcao
      */
-    public HistoricoAcao() {
-        initComponents();
+    public void init(int packageId) {
+        initComponents(packageId);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -24,35 +35,67 @@ public class HistoricoAcao extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(int packageId) {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaHistorico = new javax.swing.JTable();
         VoltarHistorico = new javax.swing.JButton();
         StatusHistorico = new javax.swing.JButton();
+        if(packageId == -1) {
+            StatusHistorico.setVisible(false);
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Histórico de Ações");
+        jLabel1.setText("HistÃ³rico de AÃ§Ãµes");
 
-        TabelaHistorico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Autor", "Pacote", "Acao", "Data"
+        Object [][] defaultData = new Object [][] {
+        };
+
+        Object [] defaultColumn = new String [] {
+                "Autor", "Pacote", "AÃ§Ã£o", "Data"
+        };
+        DefaultTableModel tableModel = new DefaultTableModel(defaultData, defaultColumn);
+        if (packageId == -1) {
+            List<PackageHistory> packageHistories = PackageHistoryController.getAllPackageHistories();
+            for (PackageHistory packageHistory : packageHistories) {
+                Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
+                tableModel.addRow(new Object[] {
+                        packageHistory.getAuthor(),
+                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
+                        packageHistory.getAction(),
+                        packageHistory.getCreatedAt()
+                });
             }
-        ));
+        } else {
+            List<PackageHistory> packageHistories = PackageHistoryController.getPackageHistoriesByPackageId(packageId);
+            for (PackageHistory packageHistory : packageHistories) {
+                Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
+                tableModel.addRow(new Object[] {
+                        packageHistory.getAuthor(),
+                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
+                        packageHistory.getAction(),
+                        packageHistory.getCreatedAt()
+                });
+            }
+        }
+        TabelaHistorico = new JTable(tableModel);
         jScrollPane1.setViewportView(TabelaHistorico);
 
         VoltarHistorico.setText("Voltar");
+        VoltarHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarHistoricoActionPerformed(evt);
+            }
+        });
 
         StatusHistorico.setText("Novo Status");
+        StatusHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatusHistoricoActionPerformed(evt, packageId);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,10 +136,19 @@ public class HistoricoAcao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void StatusHistoricoActionPerformed(java.awt.event.ActionEvent evt, int packageId) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
+        setVisible(false);
+        dispose();
+        AdicionarHistorico.main(packageId);
+    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
+
+    private void VoltarHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
+        setVisible(false);
+        dispose();
+        Menu.main();
+    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
+
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -123,7 +175,43 @@ public class HistoricoAcao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistoricoAcao().setVisible(true);
+                HistoricoAcao historicoAcao = new HistoricoAcao();
+                historicoAcao.init(-1);
+                historicoAcao.setVisible(true);
+            }
+        });
+    }
+
+    public static void main(int packageIdReceived) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(HistoricoAcao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HistoricoAcao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HistoricoAcao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HistoricoAcao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                HistoricoAcao historicoAcao = new HistoricoAcao();
+                historicoAcao.init(packageIdReceived);
+                historicoAcao.setVisible(true);
             }
         });
     }

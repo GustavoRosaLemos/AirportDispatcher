@@ -1,16 +1,15 @@
 package controller;
 
 import database.SQLiteJDBCDriverConnection;
-import model.Airport;
-import model.Flight;
-import model.Plane;
-import model.User;
+import model.*;
+import model.Package;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseController {
+public abstract class DatabaseController {
     public static void createDatabase() {
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
@@ -53,7 +52,7 @@ public class DatabaseController {
         }
     }
 
-    public static String createPackage(String packageType, String packageCategory, String owner, int weight, String weightType) {
+    public static String addPackage(String packageType, String packageCategory, String owner, int weight, String weightType) {
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO package(packageType, packageCategory, owner, weight, weightType, updatedAt, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -72,7 +71,7 @@ public class DatabaseController {
         return "-1";
     }
 
-    public static String createTransportData(int packageId, int flightId, String cargo) {
+    public static String addTransportData(int packageId, int flightId, String cargo) {
         try {
             Connection connection = SQLiteJDBCDriverConnection.connect();
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO transportData(packageId, flightId, cargo, createdAt) VALUES (?, ?, ?, ?)");
@@ -86,6 +85,27 @@ public class DatabaseController {
             System.out.println(e.getMessage());
         }
         return "-1";
+    }
+
+    public static TransportData getTransportData(int packageId) {
+        TransportData transportData = TransportData.builder().build();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM transportData WHERE packageId = ?");
+            stmt.setInt(1, packageId);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                transportData.setId(resultSet.getInt("id"));
+                transportData.setPackageId(resultSet.getInt("packageId"));
+                transportData.setFlightId(resultSet.getInt("flightId"));
+                transportData.setCargo(resultSet.getString("cargo"));
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return transportData;
     }
 
     public static User getUser(String username, String password) {
@@ -124,6 +144,28 @@ public class DatabaseController {
             System.out.println(e.getMessage());
         }
         return airports;
+    }
+
+    public static Plane getPlane(String callsign) {
+        Plane plane = Plane.builder().build();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM plane WHERE callsign = ?");
+            stmt.setString(1, callsign);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                plane.setId(resultSet.getInt("id"));
+                plane.setCallsign(resultSet.getString("callsign"));
+                plane.setCompany(resultSet.getString("company"));
+                plane.setCargoQuantity(resultSet.getInt("cargoQuantity"));
+                plane.setModel(resultSet.getString("model"));
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return plane;
     }
 
     public static List<Plane> getPlanes() {
@@ -176,5 +218,141 @@ public class DatabaseController {
             System.out.println(e.getMessage());
         }
         return flights;
+    }
+
+    public static Flight getFlight(int id) {
+        Flight flight = Flight.builder().build();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM flight WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                flight.setId(resultSet.getInt("id"));
+                flight.setArrival(resultSet.getString("arrival"));
+                flight.setDeparture(resultSet.getString("departure"));
+                flight.setSource(resultSet.getString("source"));
+                flight.setPlaneCallsign(resultSet.getString("planeCallsign"));
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return flight;
+    }
+
+    public static Package getPackage(int id) {
+        Package aPackage = Package.builder().build();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM package WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                aPackage.setId(resultSet.getInt("id"));
+                aPackage.setPackageType(resultSet.getString("packageType"));
+                aPackage.setPackageCategory(resultSet.getString("packageCategory"));
+                aPackage.setOwner(resultSet.getString("owner"));
+                aPackage.setWeight(resultSet.getInt("weight"));
+                aPackage.setWeightType(resultSet.getString("weightType"));
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return aPackage;
+    }
+
+    public static List<Package> getPackages() {
+        ArrayList<Package> packages = new ArrayList<Package>();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM package");
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                packages.add(
+                        Package.builder()
+                                .id(resultSet.getInt("id"))
+                                .owner(resultSet.getString("owner"))
+                                .packageCategory(resultSet.getString("packageCategory"))
+                                .packageType(resultSet.getString("packageType"))
+                                .weight(resultSet.getInt("weight"))
+                                .weightType(resultSet.getString("weightType"))
+                                .build()
+                );
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return packages;
+    }
+
+    public static void addPackageHistory(int packageId, String action, String author) {
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO packageHistory(packageId, action, author, createdAt) VALUES (?, ?, ?, ?)");
+            stmt.setInt(1, packageId);
+            stmt.setString(2, action);
+            stmt.setString(3, author);
+            stmt.setString(4, LocalDateTime.now().toString());
+            stmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static List<PackageHistory> getPackageHistories() {
+        ArrayList<PackageHistory> packageHistories = new ArrayList<PackageHistory>();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM packageHistory");
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                packageHistories.add(
+                        PackageHistory.builder()
+                                .id(resultSet.getInt("id"))
+                                .action(resultSet.getString("action"))
+                                .packageId(resultSet.getInt("packageId"))
+                                .createdAt(resultSet.getString("createdAt"))
+                                .author(resultSet.getString("author"))
+                                .build()
+                );
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return packageHistories;
+    }
+
+    public static List<PackageHistory> getPackageHistories(int packageId) {
+        ArrayList<PackageHistory> packageHistories = new ArrayList<PackageHistory>();
+        try {
+            Connection connection = SQLiteJDBCDriverConnection.connect();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM packageHistory WHERE packageId = ?");
+            stmt.setInt(1, packageId);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                packageHistories.add(
+                        PackageHistory.builder()
+                                .id(resultSet.getInt("id"))
+                                .action(resultSet.getString("action"))
+                                .packageId(resultSet.getInt("packageId"))
+                                .createdAt(resultSet.getString("createdAt"))
+                                .author(resultSet.getString("author"))
+                                .build()
+                );
+            }
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return packageHistories;
     }
 }

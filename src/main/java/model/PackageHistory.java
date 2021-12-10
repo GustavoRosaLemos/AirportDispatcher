@@ -9,10 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Plane {
+public class PackageHistory {
     private int id;
-    private String callsign;
-    private String company;
-    private String model;
-    private int cargoQuantity;
+    private String author;
+    private int packageId;
+    private String action;
+    private String createdAt;
 }

@@ -6,6 +6,7 @@ package view;
 
 import configuration.SystemMessages;
 import controller.LoginControllerImpl;
+import session.UserSession;
 
 import javax.swing.*;
 
@@ -108,6 +109,8 @@ public class Login extends javax.swing.JFrame {
         if (LoginControllerImpl.checkCredentials(UsernameLogin.getText(), SenhaLogin.getText())) {
             setVisible(false);
             dispose();
+            UserSession.setUsername(UsernameLogin.getText());
+            UserSession.setPassword(SenhaLogin.getText());
             Menu.main();
         } else {
             JOptionPane.showMessageDialog(null, SystemMessages.LOGIN_FAIL_MESSAGE);
