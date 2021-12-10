@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Flight {
+public class Flight implements DatabaseModels {
     private int id;
     private String planeCallsign;
     private String source;

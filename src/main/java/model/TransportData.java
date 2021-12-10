@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TransportData {
+public class TransportData implements DatabaseModels {
     private int id;
     private int packageId;
     private int flightId;

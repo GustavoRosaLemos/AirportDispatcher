@@ -9,10 +9,8 @@ import configuration.SystemMessages;
 import constant.PlaneConstants;
 import controller.DatabaseController;
 import controller.PackageController;
-import exception.WrongWeightException;
 import model.Airport;
 import model.Flight;
-import model.Plane;
 
 import javax.swing.*;
 import java.util.ArrayList;
