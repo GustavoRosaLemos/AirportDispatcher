@@ -116,7 +116,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarMenuActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        RegistroPacote.main();
     }//GEN-LAST:event_RegistrarMenuActionPerformed
 
     private void ConsultarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarMenuActionPerformed

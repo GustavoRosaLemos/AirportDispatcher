@@ -1,6 +1,5 @@
 package controller;
 
-import constant.UserConstants;
 import model.User;
 
 public class LoginControllerImpl implements LoginController {
