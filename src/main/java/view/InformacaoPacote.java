@@ -39,12 +39,13 @@ public class InformacaoPacote extends javax.swing.JFrame {
         TipoPacoteInformacao = new javax.swing.JComboBox<>();
         CategoriaPacoteInformacao = new javax.swing.JComboBox<>();
         DestinoPacoteInformacao = new javax.swing.JComboBox<>();
-        NomePacoteInformacao = new javax.swing.JComboBox<>();
-        PesoPacoteInformacao = new javax.swing.JComboBox<>();
         UnidadePesoPacoteInformacao = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         PoraoInfo = new javax.swing.JComboBox<>();
         VooInfo = new javax.swing.JComboBox<>();
+        HistoricoInfo = new javax.swing.JButton();
+        PesoPacoteInformacao = new javax.swing.JTextField();
+        NomePacoteInformacao = new javax.swing.JTextField();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -110,20 +111,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
-        NomePacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomePacoteInformacaoActionPerformed(evt);
-            }
-        });
-
-        PesoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        PesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesoPacoteInformacaoActionPerformed(evt);
-            }
-        });
-
         UnidadePesoPacoteInformacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         UnidadePesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +135,27 @@ public class InformacaoPacote extends javax.swing.JFrame {
             }
         });
 
+        HistoricoInfo.setText("Histórico");
+        HistoricoInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HistoricoInfoActionPerformed(evt);
+            }
+        });
+
+        PesoPacoteInformacao.setText("jTextField1");
+        PesoPacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesoPacoteInformacaoActionPerformed(evt);
+            }
+        });
+
+        NomePacoteInformacao.setText("jTextField1");
+        NomePacoteInformacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomePacoteInformacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,6 +165,7 @@ public class InformacaoPacote extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(HistoricoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(NomePacoteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -164,26 +173,27 @@ public class InformacaoPacote extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(VoltarInformacao)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CategoriaPacoteInformacao, 0, 100, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(DestinoPacoteInformacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(UnidadePesoPacoteInformacao, 0, 46, Short.MAX_VALUE))))
                             .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PoraoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(VooInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                                .addComponent(VooInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addComponent(NomePacoteInformacao)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(TipoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(CategoriaPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(DestinoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,16 +213,18 @@ public class InformacaoPacote extends javax.swing.JFrame {
                     .addComponent(DestinoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UnidadePesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomePacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PesoPacoteInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PoraoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VooInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(HistoricoInfo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,10 +258,6 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TipoPacoteInformacaoActionPerformed
 
-    private void NomePacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
-
     private void DestinoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinoPacoteInformacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DestinoPacoteInformacaoActionPerformed
@@ -258,13 +266,21 @@ public class InformacaoPacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CategoriaPacoteInformacaoActionPerformed
 
+    private void UnidadePesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadePesoPacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UnidadePesoPacoteInformacaoActionPerformed
+
+    private void NomePacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomePacoteInformacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomePacoteInformacaoActionPerformed
+
     private void PesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoPacoteInformacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PesoPacoteInformacaoActionPerformed
 
-    private void UnidadePesoPacoteInformacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadePesoPacoteInformacaoActionPerformed
+    private void HistoricoInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoricoInfoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UnidadePesoPacoteInformacaoActionPerformed
+    }//GEN-LAST:event_HistoricoInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,10 +320,11 @@ public class InformacaoPacote extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CategoriaPacoteInformacao;
     private javax.swing.JComboBox<String> DestinoPacoteInformacao;
+    private javax.swing.JButton HistoricoInfo;
     private javax.swing.JButton HistoricoInformacao;
     private javax.swing.JLabel NomePacoteInfo;
-    private javax.swing.JComboBox<String> NomePacoteInformacao;
-    private javax.swing.JComboBox<String> PesoPacoteInformacao;
+    private javax.swing.JTextField NomePacoteInformacao;
+    private javax.swing.JTextField PesoPacoteInformacao;
     private javax.swing.JComboBox<String> PoraoInfo;
     private javax.swing.JTextField PortaoTransporteInformacao;
     private javax.swing.JComboBox<String> TipoPacoteInformacao;
