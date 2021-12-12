@@ -12,6 +12,8 @@ import utils.PackageTools;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -59,6 +61,8 @@ public class HistoricoAcao extends javax.swing.JFrame {
         DefaultTableModel tableModel = new DefaultTableModel(defaultData, defaultColumn);
         if (packageId == -1) {
             List<PackageHistory> packageHistories = PackageHistoryController.getAllPackageHistories();
+            Comparator<PackageHistory> comparator = controller.Comparator.builder().build();
+            Collections.sort(packageHistories, comparator);
             for (PackageHistory packageHistory : packageHistories) {
                 Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
                 tableModel.addRow(new Object[] {
@@ -70,6 +74,8 @@ public class HistoricoAcao extends javax.swing.JFrame {
             }
         } else {
             List<PackageHistory> packageHistories = PackageHistoryController.getPackageHistoriesByPackageId(packageId);
+            Comparator<PackageHistory> comparator = controller.Comparator.builder().build();
+            Collections.sort(packageHistories, comparator);
             for (PackageHistory packageHistory : packageHistories) {
                 Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
                 tableModel.addRow(new Object[] {
