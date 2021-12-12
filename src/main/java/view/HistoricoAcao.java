@@ -63,7 +63,7 @@ public class HistoricoAcao extends javax.swing.JFrame {
                 Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
                 tableModel.addRow(new Object[] {
                         packageHistory.getAuthor(),
-                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
+                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getPackageId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
                         packageHistory.getAction(),
                         packageHistory.getCreatedAt()
                 });
@@ -74,7 +74,7 @@ public class HistoricoAcao extends javax.swing.JFrame {
                 Package aPackage = PackageController.getPackageById(packageHistory.getPackageId());
                 tableModel.addRow(new Object[] {
                         packageHistory.getAuthor(),
-                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
+                        String.format("%s%s%s", PackageTools.getPackageTypeInitials(aPackage.getPackageType()), packageHistory.getPackageId(), PackageTools.getPackageCategoryInitials(aPackage.getPackageCategory())),
                         packageHistory.getAction(),
                         packageHistory.getCreatedAt()
                 });
