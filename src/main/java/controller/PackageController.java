@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class PackageController {
     public static boolean addPackage(String packageType, String packageCategory, String owner, int weight, String weightType, String planeCallsign, String cargo) {
-        int packageId = Integer.parseInt(DatabaseController.addPackage(packageType, packageCategory, owner, weight, weightType));
+        int packageId = DatabaseController.addPackage(packageType, packageCategory, owner, weight, weightType);
         System.out.println("packageId " + packageId);
         if (packageId == -1) { return false; }
         int flightId = DatabaseController.getFlights(planeCallsign).get(0).getId();
