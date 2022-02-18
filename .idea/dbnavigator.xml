@@ -26,13 +26,13 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="102f85ff-0676-4d6e-bed6-3d923759922e">
-        <schema name="main" object-types="table, view, constraint, index, column, dataset trigger" />
+        <schema name="main" object-types="table, view, column" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="102f85ff-0676-4d6e-bed6-3d923759922e">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[delete from "transportData"]]></console>
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[delete from "packageHistory" where action = "Pacote Redirecionado"]]></console>
     </connection>
     <connection id="0b9c44bc-b83f-4f95-bd45-b919c368398a">
       <console name="Connection 1" type="STANDARD" schema="" session="Main" />

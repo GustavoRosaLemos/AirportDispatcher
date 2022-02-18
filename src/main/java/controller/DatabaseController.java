@@ -61,7 +61,9 @@ public abstract class DatabaseController {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            TransportData transportData = entityManager.find(TransportData.class, packageId);
+            TransportData transportData = (TransportData) entityManager.createQuery("from TransportData where packageId =:packageId")
+                    .setParameter("packageId", packageId)
+                    .getSingleResult();
             entityManager.close();
             entityManagerFactory.close();
             return transportData;
@@ -264,8 +266,8 @@ public abstract class DatabaseController {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<PackageHistory> packageHistories = new ArrayList<PackageHistory>();
         try {
-            packageHistories = (ArrayList<PackageHistory>) entityManager.createQuery("from PackageHistory where id =:id")
-                    .setParameter("id", packageId)
+            packageHistories = (ArrayList<PackageHistory>) entityManager.createQuery("from PackageHistory where packageId =:packageId")
+                    .setParameter("packageId", packageId)
                     .getResultList();
         } catch (Exception e) {
             System.out.println(e.getMessage());
