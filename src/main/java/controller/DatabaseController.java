@@ -1,347 +1,279 @@
 package controller;
 
-import database.SQLiteJDBCDriverConnection;
-import exception.DatabaseConnectionException;
-import exception.DatabaseSetupException;
-import model.*;
 import model.Package;
+import model.*;
 
-import java.sql.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DatabaseController {
-    private static Connection connection;
-
-    public static void createDatabase() throws DatabaseSetupException, SQLException, DatabaseConnectionException {
+    public static int addPackage(String packageType, String packageCategory, String owner, int weight, String weightType) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Package aPackage = Package.builder()
+                .packageType(packageType)
+                .packageCategory(packageCategory)
+                .owner(owner)
+                .weight(weight)
+                .weightType(weightType)
+                .build();
         try {
-            connection = SQLiteJDBCDriverConnection.connect();
-            Statement statement = connection.createStatement();
-
-//            statement.execute("INSERT INTO user(username, password) VALUES ('gustavo.lemos', '123456')");
-//            statement.execute("INSERT INTO user(username, password) VALUES ('paulo.dalescio', '123456')");
-//
-//            statement.execute(String.format("INSERT INTO flight(planeCallsign, source, departure, departureDate, arrival, arrivalDate, updatedAt, createdAt) VALUES ('GUG2233', '%s', 'FLN', '%s', 'GIG', '%s', '%s', '%s')", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO flight(planeCallsign, source, departure, departureDate, arrival, arrivalDate, updatedAt, createdAt) VALUES ('GUG2233', '%s', 'GIG', '%s', 'FLN', '%s', '%s', '%s')", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO flight(planeCallsign, source, departure, departureDate, arrival, arrivalDate, updatedAt, createdAt) VALUES ('TAM1234', '%s', 'GRU', '%s', 'GIG', '%s', '%s', '%s')", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO flight(planeCallsign, source, departure, departureDate, arrival, arrivalDate, updatedAt, createdAt) VALUES ('TAM1234', '%s', 'GRU', '%s', 'FLN', '%s', '%s', '%s')", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()));
-//
-//            statement.execute(String.format("INSERT INTO airport(name, code, createdAt) VALUES ('Florianópolis', 'FLN', '%s')", LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO airport(name, code, createdAt) VALUES ('Guarulhos', 'GRU', '%s')", LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO airport(name, code, createdAt) VALUES ('Galeão', 'GIG', '%s')", LocalDateTime.now()));
-//
-//            statement.execute(String.format("INSERT INTO plane(callSign, company, model, cargoQuantity, updatedAt, createdAt) VALUES ('GUG2233', 'Gol', 'Boing 737 Max', 3, '%s', '%s')", LocalDateTime.now(), LocalDateTime.now()));
-//            statement.execute(String.format("INSERT INTO plane(callSign, company, model, cargoQuantity, updatedAt, createdAt) VALUES ('TAM1234', 'Latam', 'Airbus A380', 3, '%s', '%s')", LocalDateTime.now(), LocalDateTime.now()));
-
-//            statement.execute("DROP TABLE package");
-//            statement.execute("DROP TABLE packageHistory");
-//            statement.execute("DROP TABLE user");
-//            statement.execute("DROP TABLE transportData");
-//            statement.execute("DROP TABLE flight");
-//            statement.execute("DROP TABLE plane");
-//            statement.execute("DROP TABLE airport");
-
-            statement.execute("CREATE TABLE IF NOT EXISTS package( id INTEGER PRIMARY KEY AUTOINCREMENT, packageType VARCHAR, packageCategory VARCHAR, owner VARCHAR, weight INTEGER, weightType VARCHAR, updatedAt DATETIME, createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS packageHistory( id INTEGER PRIMARY KEY AUTOINCREMENT, author VARCHAR, packageId INTEGER, action VARCHAR, description VARCHAR, updatedAt DATETIME, createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS user( id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR, password INTEGER, createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS transportData( id INTEGER PRIMARY KEY AUTOINCREMENT, packageId INTEGER, flightId INTEGER, cargo VARCHAR(1), createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS flight( id INTEGER PRIMARY KEY AUTOINCREMENT, planeCallsign INTEGER, source VARCHAR(3), departure VARCHAR(3), departureDate DATETIME, arrival VARCHAR(3), arrivalDate DATETIME, updatedAt DATETIME, createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS plane( id INTEGER PRIMARY KEY AUTOINCREMENT, callsign VARCHAR(7), company VARCHAR, model VARCHAR, cargoQuantity INT, updatedAt DATETIME, createdAt DATETIME)");
-            statement.execute("CREATE TABLE IF NOT EXISTS airport( id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, code VARCHAR, createdAt DATETIME)");
-            statement.close();
-        } catch (SQLException e) {
-            throw new DatabaseSetupException("Falha ao realizar setup do banco de dados > " + e.getMessage());
+            entityManager.getTransaction().begin();
+            entityManager.persist(aPackage);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            entityManagerFactory.close();
+            return aPackage.getId();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
+        return -1;
     }
 
-    public static String addPackage(String packageType, String packageCategory, String owner, int weight, String weightType) {
+    public static int addTransportData(int packageId, int flightId, String cargo) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        TransportData transportData = TransportData.builder().packageId(packageId).flightId(flightId).cargo(cargo).build();
         try {
-            PreparedStatement stmt = connection.prepareStatement("INSERT INTO package(packageType, packageCategory, owner, weight, weightType, updatedAt, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, packageType);
-            stmt.setString(2, packageCategory);
-            stmt.setString(3, owner);
-            stmt.setInt(4, weight);
-            stmt.setString(5, weightType);
-            stmt.setString(6, LocalDateTime.now().toString());
-            stmt.setString(7, LocalDateTime.now().toString());
-            stmt.execute();
-            String index = stmt.getGeneratedKeys().getString(1);
-            stmt.close();
-            return index;
-        } catch (SQLException e) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(transportData);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            entityManagerFactory.close();
+            return transportData.getId();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return "-1";
-    }
-
-    public static String addTransportData(int packageId, int flightId, String cargo)  {
-        try {
-            PreparedStatement stmt = connection.prepareStatement("INSERT INTO transportData(packageId, flightId, cargo, createdAt) VALUES (?, ?, ?, ?)");
-            stmt.setInt(1, packageId);
-            stmt.setInt(2, flightId);
-            stmt.setString(3, cargo);
-            stmt.setString(4, LocalDateTime.now().toString());
-            stmt.execute();
-            String index = stmt.getGeneratedKeys().getString(1);
-            stmt.close();
-            return index;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return "-1";
+        return -1;
     }
 
     public static TransportData getTransportData(int packageId) {
-        TransportData transportData = TransportData.builder().build();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM transportData WHERE packageId = ?");
-            stmt.setInt(1, packageId);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                transportData.setId(resultSet.getInt("id"));
-                transportData.setPackageId(resultSet.getInt("packageId"));
-                transportData.setFlightId(resultSet.getInt("flightId"));
-                transportData.setCargo(resultSet.getString("cargo"));
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            TransportData transportData = (TransportData) entityManager.createQuery("from TransportData where packageId =:packageId")
+                    .setParameter("packageId", packageId)
+                    .getSingleResult();
+            entityManager.close();
+            entityManagerFactory.close();
+            return transportData;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return transportData;
+        return null;
     }
 
     public static User getUser(String username, String password) {
-        User user = User.builder().build();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                user.setId(resultSet.getInt("id"));
-                user.setUsername(resultSet.getString("username"));
-                user.setPassword(resultSet.getString("password"));
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            User user = (User) entityManager.createQuery("from User where username =:username and password =:password")
+                    .setParameter("username", username)
+                    .setParameter("password", password)
+                    .getSingleResult();
+            entityManager.close();
+            entityManagerFactory.close();
+            return user;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return user;
+        return null;
     }
 
     public static List<Airport> getAirports() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<Airport> airports = new ArrayList<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM airport");
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                airports.add(Airport.builder().id(resultSet.getInt("id")).name(resultSet.getString("name")).code(resultSet.getString("code")).build());
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            airports = (ArrayList<Airport>) entityManager.createQuery("from Airport").getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return airports;
     }
 
     public static Plane getPlane(String callsign) {
-        Plane plane = Plane.builder().build();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM plane WHERE callsign = ?");
-            stmt.setString(1, callsign);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                plane.setId(resultSet.getInt("id"));
-                plane.setCallsign(resultSet.getString("callsign"));
-                plane.setCompany(resultSet.getString("company"));
-                plane.setCargoQuantity(resultSet.getInt("cargoQuantity"));
-                plane.setModel(resultSet.getString("model"));
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            Plane plane = (Plane) entityManager.createQuery("from Plane where callsign =:callsign")
+                    .setParameter("callsign", callsign)
+                    .getSingleResult();
+            entityManager.close();
+            entityManagerFactory.close();
+            return plane;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return plane;
+        return null;
     }
 
     public static List<Plane> getPlanes() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<Plane> planes = new ArrayList<Plane>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM plane");
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                planes.add(Plane.builder().id(resultSet.getInt("id")).callsign(resultSet.getString("callsign")).company(resultSet.getString("company")).model(resultSet.getString("model")).cargoQuantity(resultSet.getInt("cargoQuantity")).build());
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            planes = (ArrayList<Plane>) entityManager.createQuery("from Plane").getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return planes;
     }
 
     public static List<Flight> getFlights() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<Flight> flights = new ArrayList<Flight>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM flight");
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                flights.add(Flight.builder().id(resultSet.getInt("id")).planeCallsign(resultSet.getString("planeCallsign")).departure(resultSet.getString("departure")).arrival(resultSet.getString("arrival")).build());
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            flights = (ArrayList<Flight>) entityManager.createQuery("from Flight").getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return flights;
     }
 
     public static List<Flight> getFlights(String planeCallsign) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<Flight> flights = new ArrayList<Flight>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM flight WHERE planeCallsign = ?");
-            stmt.setString(1, planeCallsign);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                flights.add(Flight.builder().id(resultSet.getInt("id")).planeCallsign(resultSet.getString("planeCallsign")).departure(resultSet.getString("departure")).arrival(resultSet.getString("arrival")).build());
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            flights = (ArrayList<Flight>) entityManager.createQuery("from Flight where planeCallsign =:planeCallsign")
+                    .setParameter("planeCallsign", planeCallsign)
+                    .getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return flights;
     }
 
     public static Flight getFlight(int id) {
-        Flight flight = Flight.builder().build();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM flight WHERE id = ?");
-            stmt.setInt(1, id);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                flight.setId(resultSet.getInt("id"));
-                flight.setArrival(resultSet.getString("arrival"));
-                flight.setDeparture(resultSet.getString("departure"));
-                flight.setSource(resultSet.getString("source"));
-                flight.setPlaneCallsign(resultSet.getString("planeCallsign"));
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            Flight flight = entityManager.find(Flight.class, id);
+            entityManager.close();
+            entityManagerFactory.close();
+            return flight;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return flight;
+        return null;
     }
 
     public static Package getPackage(int id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM package WHERE id = ?");
-            stmt.setInt(1, id);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                Package aPackage;
-                if (resultSet.getString("packageCategory").toString().equalsIgnoreCase("Refrigerado")) {
-                    aPackage = PackageRefrigerated.builder().build();
-                } else if (resultSet.getString("packageCategory").toString().equalsIgnoreCase("Vivo")) {
-                    aPackage = PackageLive.builder().build();
-                } else {
-                    aPackage = Package.builder().build();
-                }
-                aPackage.setId(resultSet.getInt("id"));
-                aPackage.setPackageType(resultSet.getString("packageType"));
-                aPackage.setPackageCategory(resultSet.getString("packageCategory"));
-                aPackage.setOwner(resultSet.getString("owner"));
-                aPackage.setWeight(resultSet.getInt("weight"));
-                aPackage.setWeightType(resultSet.getString("weightType"));
-                return aPackage;
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            Package aPackage = entityManager.find(Package.class, id);
+            entityManager.close();
+            entityManagerFactory.close();
+            return aPackage;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return null;
     }
 
     public static List<Package> getPackages() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<Package> packages = new ArrayList<Package>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM package");
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                packages.add(
-                        Package.builder()
-                                .id(resultSet.getInt("id"))
-                                .owner(resultSet.getString("owner"))
-                                .packageCategory(resultSet.getString("packageCategory"))
-                                .packageType(resultSet.getString("packageType"))
-                                .weight(resultSet.getInt("weight"))
-                                .weightType(resultSet.getString("weightType"))
-                                .build()
-                );
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            packages = (ArrayList<Package>) entityManager.createQuery("from Package").getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return packages;
     }
 
-    public static void addPackageHistory(int packageId, String action, String author) {
+    public static int addPackageHistory(int packageId, String action, String author) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        PackageHistory packageHistory = PackageHistory.builder().packageId(packageId).action(action).author(author).createdAt(LocalDateTime.now().toString()).build();
         try {
-            PreparedStatement stmt = connection.prepareStatement("INSERT INTO packageHistory(packageId, action, author, createdAt) VALUES (?, ?, ?, ?)");
-            stmt.setInt(1, packageId);
-            stmt.setString(2, action);
-            stmt.setString(3, author);
-            stmt.setString(4, LocalDateTime.now().toString());
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException e) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(packageHistory);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            entityManagerFactory.close();
+            return packageHistory.getPackageId();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
+        return -1;
     }
 
     public static List<PackageHistory> getPackageHistories() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<PackageHistory> packageHistories = new ArrayList<PackageHistory>();
         try {
-            Connection connection = SQLiteJDBCDriverConnection.connect();
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM packageHistory");
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                packageHistories.add(
-                        PackageHistory.builder()
-                                .id(resultSet.getInt("id"))
-                                .action(resultSet.getString("action"))
-                                .packageId(resultSet.getInt("packageId"))
-                                .createdAt(resultSet.getString("createdAt"))
-                                .author(resultSet.getString("author"))
-                                .build()
-                );
-            }
-            stmt.close();
-        } catch (SQLException | DatabaseConnectionException e) {
+            packageHistories = (ArrayList<PackageHistory>) entityManager.createQuery("from PackageHistory").getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return packageHistories;
     }
 
     public static List<PackageHistory> getPackageHistories(int packageId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banco");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         ArrayList<PackageHistory> packageHistories = new ArrayList<PackageHistory>();
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM packageHistory WHERE packageId = ?");
-            stmt.setInt(1, packageId);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                packageHistories.add(
-                        PackageHistory.builder()
-                                .id(resultSet.getInt("id"))
-                                .action(resultSet.getString("action"))
-                                .packageId(resultSet.getInt("packageId"))
-                                .createdAt(resultSet.getString("createdAt"))
-                                .author(resultSet.getString("author"))
-                                .build()
-                );
-            }
-            stmt.close();
-        } catch (SQLException e) {
+            packageHistories = (ArrayList<PackageHistory>) entityManager.createQuery("from PackageHistory where packageId =:packageId")
+                    .setParameter("packageId", packageId)
+                    .getResultList();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return packageHistories;
     }
