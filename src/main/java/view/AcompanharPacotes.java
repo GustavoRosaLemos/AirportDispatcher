@@ -5,10 +5,8 @@
 package view;
 
 import controller.*;
-import model.Flight;
+import model.*;
 import model.Package;
-import model.Plane;
-import model.TransportData;
 import utils.PackageTools;
 
 import javax.swing.*;
@@ -55,8 +53,8 @@ public class AcompanharPacotes extends javax.swing.JFrame {
                 "Pacote", "Voo", "Parida", "Destino"
         };
         DefaultTableModel tableModel = new DefaultTableModel(defaultData, defaultColumn);
-        Set<Package> packages = new HashSet<>(PackageController.getAllPackages());
-        for (Package aPackage : packages) {
+        Set<Package> packageHistories = new HashSet<Package>(PackageController.getAllPackages());
+        for (Package aPackage : packageHistories) {
             TransportData transportData = TransportDataController.getTransportDataPackageId(aPackage.getId());
             Flight flight = FlightController.getFlightById(transportData.getFlightId());
             Plane plane = PlaneController.getPlaneByCallSign(flight.getPlaneCallsign());
