@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.DatabaseModels;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
