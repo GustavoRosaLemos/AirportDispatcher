@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.DatabaseModels;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @Entity
-public class Flight {
+public class Flight implements DatabaseModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

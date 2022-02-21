@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.DatabaseModels;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class Airport {
+public class Airport implements DatabaseModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

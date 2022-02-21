@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.DatabaseModels;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class PackageHistory {
+public class PackageHistory implements DatabaseModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
